@@ -71,7 +71,7 @@ const Header = () => {
     );
 
     return (
-        <nav className='border-general sticky top-0 z-40 border-b bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/80'>
+        <nav className='border-general sticky top-0 z-40 border-b dark:border-[#0B1120] bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/90'>
             <div className='container'>
                 <div className='relative flex h-16 items-center justify-between'>
                     <div className='flex items-center'>
