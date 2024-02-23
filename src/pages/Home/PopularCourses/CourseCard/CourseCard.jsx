@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 
 const CourseCard = () => {
     return (
-        <div className='shadow-lg rounded dark:bg-slate-950/50 hover:scale-105 duration-500 overflow-hidden'>
-            <div className='relative rounded'>
+        <div className='shadow-xl rounded dark:bg-black/30 hover:scale-105 duration-500 overflow-hidden'>
+            <div className='relative rounded w-full'>
                 <Link to='/'>
-                    <img src={cardImg} alt='course-thumb' />
+                    <img src={cardImg} className='rounded' alt='course-thumb' />
                 </Link>
                 <div className='absolute left-0 bottom-0 ms-5 mb-4 border-2 rounded-full shadow-2xl border-green-400'>
                     <img src={instructorImg} alt='course-avatar' />
@@ -30,7 +30,7 @@ const CourseCard = () => {
                         Master Web Design in Adobe XD: Complete UI/UX Masterclass
                     </h4>
                 </div>
-                <div className='flex items-center justify-between dark:text-slate-400'>
+                <div className='flex items-center justify-between flex-wrap gap-2 dark:text-slate-400'>
                     <div>
                         <div className='flex items-center gap-1'>
                             <span className='font-bold text-xl'>4.7</span>
@@ -51,9 +51,9 @@ const CourseCard = () => {
                         </span>
                     </div>
                 </div>
-                <div className='flex items-center justify-between pb-5 dark:text-slate-400 border-t py-4'>
+                <div className='flex items-center justify-between pb-5 dark:text-slate-400 border-t dark:border-white/30 py-4'>
                     <h5 className='text-2xl font-bold'>$29.99</h5>
-                    <button className='border-2 hover:bg-black hover:text-white dark:hover:bg-sky-600 duration-500 border-black dark:border-sky-500 font-bold rounded-full px-8 py-1 flex items-center gap-2'>
+                    <button className='border-2 hover:bg-black hover:text-white dark:text-sky-600 dark:hover:text-white dark:hover:bg-sky-600 duration-500 border-black dark:border-sky-500 font-bold rounded-full px-6 py-1 flex items-center gap-2'>
                         <FaCartPlus />
                         <span>Select</span>
                     </button>

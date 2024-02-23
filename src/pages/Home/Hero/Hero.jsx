@@ -7,7 +7,7 @@ import { Autoplay, EffectCards } from 'swiper/modules';
 import instructors from '../../../demoData/instractors';
 const Hero = () => {
     return (
-        <div className='dark:bg-[#0B1120]/30 bg-gray-300'>
+        <div className='dark:bg-[#0B1120]/60 bg-gray-300'>
             <div className='container'>
                 <div className='py-20 lg:py-40 grid lg:grid-cols-2 items-center'>
                     <Swiper
@@ -26,7 +26,7 @@ const Hero = () => {
                                 className='relative before:absolute before:w-full before:h-full before:bg-gradient-to-t before:from-gray-800'
                             >
                                 <img
-                                    className='object-cover w-full h-full'
+                                    className='object-cover max-w-full w-full h-full'
                                     src={person.img}
                                     alt=''
                                 />
