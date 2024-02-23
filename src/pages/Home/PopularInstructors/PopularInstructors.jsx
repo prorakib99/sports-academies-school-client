@@ -1,22 +1,22 @@
 import { Link } from 'react-router-dom';
 import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
-import CourseCard from './CourseCard/CourseCard';
+import InstructorCard from './InstructorCard/InstructorCard';
 import LinkButton from '../../Shared/LinkButton/LinkButton';
 
-const PopularCourses = () => {
+const PopularInstructors = () => {
     return (
-        <div className='py-16 dark:bg-slate-800 bg-slate-100'>
+        <div className='py-16 dark:bg-[#0B1120]/60 bg-gray-200'>
             <div className='container'>
                 <div className='lg:w-11/12 mx-auto'>
-                    <SectionTitle title='Classes' />
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-10'>
-                        <CourseCard />
-                        <CourseCard />
-                        <CourseCard />
+                    <SectionTitle title='Instructors' />
+                    <div className='grid lg:grid-cols-3 gap-10 py-10'>
+                        <InstructorCard />
+                        <InstructorCard />
+                        <InstructorCard />
                     </div>
                     <div className='flex justify-center mt-2'>
                         <Link>
-                            <LinkButton text='All Classes' />
+                            <LinkButton text='All Instructors' />
                         </Link>
                     </div>
                 </div>
@@ -25,4 +25,4 @@ const PopularCourses = () => {
     );
 };
 
-export default PopularCourses;
+export default PopularInstructors;

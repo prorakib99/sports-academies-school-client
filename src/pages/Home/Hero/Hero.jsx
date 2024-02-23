@@ -1,13 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FaExternalLinkAlt } from 'react-icons/fa';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 
 import { Autoplay, EffectCards } from 'swiper/modules';
 import instructors from '../../../demoData/instractors';
+import { Link } from 'react-router-dom';
+import LinkButton from '../../Shared/LinkButton/LinkButton';
 const Hero = () => {
     return (
-        <div className='dark:bg-[#0B1120]/60 bg-gray-300'>
+        <div className='dark:bg-[#0B1120]/60 bg-gray-200'>
             <div className='container'>
                 <div className='py-20 lg:py-40 grid lg:grid-cols-2 items-center'>
                     <Swiper
@@ -55,9 +56,11 @@ const Hero = () => {
                             athletes to reach their full potential while creating lasting memories
                             and friendships in a fun and active summer setting.
                         </p>
-                        <button className='flex items-center gap-2 mt-6 border-black text-black dark:border-sky-600 dark:text-sky-600 font-bold rounded-full px-4 py-2 border'>
-                            <FaExternalLinkAlt /> All Courses
-                        </button>
+                        <div className='mt-6'>
+                            <Link>
+                                <LinkButton text='All Classes' />
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

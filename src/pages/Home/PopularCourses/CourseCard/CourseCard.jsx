@@ -12,7 +12,7 @@ const CourseCard = () => {
                 <Link to='/'>
                     <img src={cardImg} className='rounded' alt='course-thumb' />
                 </Link>
-                <div className='absolute left-0 bottom-0 ms-5 mb-4 border-2 rounded-full shadow-2xl border-green-400'>
+                <div className='absolute left-0 bottom-0 ms-5 mb-4 border-2 rounded-full shadow-2xl border-black dark:border-green-600'>
                     <img src={instructorImg} alt='course-avatar' />
                 </div>
             </div>
