@@ -5,7 +5,7 @@ import LinkButton from '../../Shared/LinkButton/LinkButton';
 
 const PopularCourses = () => {
     return (
-        <div className='py-16 dark:bg-slate-800 bg-slate-100'>
+        <div className='py-16 dark:bg-slate-800 border-b-2 border-gray-300 dark:border-white/10 bg-slate-100'>
             <div className='container'>
                 <div className='lg:w-11/12 mx-auto'>
                     <SectionTitle title='Classes' />

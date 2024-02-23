@@ -19,9 +19,10 @@ const InstructorCard = () => {
                     alt='instructor-profile'
                 />
             </div>
-            <div className='space-y-2 pt-6 pb-8 dark:text-slate-400'>
+            <div className='space-y-4 pt-6 pb-8 dark:text-slate-400'>
                 <span className='text-xl font-bold'>Instructor</span>
-                <h4 className='relative text-2xl font-bold'>Brooklyn Simmons</h4>
+                <h4 className='relative text-2xl font-bold !mt-1'>Brooklyn Simmons</h4>
+                <div className='!mb-8 relative dark:bg-slate-400 before:absolute before:w-1/3 dark:before:bg-slate-400 before:h-[3px] before:bg-black before:left-0 after:absolute dark:after:bg-slate-400 after:bg-black after:w-1/3 after:h-[3px] after:right-0'></div>
                 <div className='flex items-center gap-6 flex-wrap justify-center text-lg'>
                     <div className='flex items-center gap-1'>
                         <IoIosPlayCircle className='text-xl' />

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const CourseCard = () => {
     return (
-        <div className='shadow-xl rounded dark:bg-black/30 hover:scale-105 duration-500 overflow-hidden'>
+        <div className='shadow-xl rounded-md dark:bg-black/30 hover:scale-105 border-b-4 border-black dark:border-sky-600 duration-500 overflow-hidden'>
             <div className='relative rounded w-full'>
                 <Link to='/'>
                     <img src={cardImg} className='rounded' alt='course-thumb' />
