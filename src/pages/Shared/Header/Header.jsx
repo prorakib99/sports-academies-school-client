@@ -9,24 +9,7 @@ import darkLogo from '../../../assets/dark-logo.png';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/ThemeProvider';
 import { useContext } from 'react';
-
-const nav = [
-    {
-        id: 1,
-        path: '/',
-        page: 'Home'
-    },
-    {
-        id: 2,
-        path: '/instructors',
-        page: 'Instructors'
-    },
-    {
-        id: 3,
-        path: '/classes',
-        page: 'Classes'
-    }
-];
+import { nav } from '../../../localData/nav';
 
 const Header = () => {
     const { theme, themeToggle } = useContext(ThemeContext);
