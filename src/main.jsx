@@ -4,9 +4,12 @@ import './index.css';
 import 'swiper/css';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/router.jsx';
+import ThemeProvider from './providers/ThemeProvider.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <ThemeProvider>
+            <RouterProvider router={router} />
+        </ThemeProvider>
     </React.StrictMode>
 );

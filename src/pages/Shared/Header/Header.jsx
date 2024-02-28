@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { HiBars3 } from 'react-icons/hi2';
 import { MdClose } from 'react-icons/md';
-import useTheme from '../../../hooks/useTheme/useTheme';
 import { useSpring, animated } from 'react-spring';
 import { FiSun } from 'react-icons/fi';
 import { FaMoon } from 'react-icons/fa';
 import lightLogo from '../../../assets/light-logo.png';
 import darkLogo from '../../../assets/dark-logo.png';
 import { NavLink } from 'react-router-dom';
+import { ThemeContext } from '../../../providers/ThemeProvider';
+import { useContext } from 'react';
 
 const nav = [
     {
@@ -28,7 +29,7 @@ const nav = [
 ];
 
 const Header = () => {
-    const [theme, themeToggle] = useTheme();
+    const { theme, themeToggle } = useContext(ThemeContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -103,33 +104,7 @@ const Header = () => {
                     </div>
 
                     <div className='hidden lg:flex lg:items-center lg:space-x-4'>
-                        <div className='flex space-x-2'>
-                            {/* <a
-                                href='/'
-                                className='cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
-                            >
-                                Home
-                            </a>
-                            <a
-                                href='/'
-                                className='cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
-                            >
-                                Instructors
-                            </a>
-                            <a
-                                href='/'
-                                className='cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
-                            >
-                                Classes
-                            </a>
-                            <a
-                                href='/'
-                                className='cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
-                            >
-                                Dashboard
-                            </a> */}
-                            {navigation}
-                        </div>
+                        <div className='flex space-x-2'>{navigation}</div>
                         <div className='flex items-center space-x-4'>
                             <button
                                 onClick={themeToggle}
