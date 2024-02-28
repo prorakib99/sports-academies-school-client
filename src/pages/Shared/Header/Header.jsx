@@ -6,7 +6,7 @@ import { FiSun } from 'react-icons/fi';
 import { FaMoon } from 'react-icons/fa';
 import lightLogo from '../../../assets/light-logo.png';
 import darkLogo from '../../../assets/dark-logo.png';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/ThemeProvider';
 import { useContext } from 'react';
 import { nav } from '../../../localData/nav';
@@ -59,13 +59,13 @@ const Header = () => {
             <div className='container'>
                 <div className='relative flex h-16 items-center justify-between'>
                     <div className='flex items-center'>
-                        <button className='flex items-center'>
+                        <Link to='/' className='flex items-center'>
                             <img
                                 className='object-cover w-full h-12'
                                 alt='Logo'
                                 src={theme === 'dark' ? darkLogo : lightLogo}
                             />
-                        </button>
+                        </Link>
                     </div>
 
                     <div className='flex space-x-4 lg:hidden'>
@@ -96,9 +96,11 @@ const Header = () => {
                                 {theme === 'dark' ? <FiSun className='text-white' /> : <FaMoon />}
                             </button>
                             <div className='flex space-x-3'>
-                                <button className='bg-slate-900 dark:bg-sky-600 text-sm rounded-full px-4 font-bold py-1.5 text-white'>
-                                    Login
-                                </button>
+                                <Link to='/login'>
+                                    <button className='bg-slate-900 dark:bg-sky-600 text-sm rounded-full px-4 font-bold py-1.5 text-white'>
+                                        Login
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

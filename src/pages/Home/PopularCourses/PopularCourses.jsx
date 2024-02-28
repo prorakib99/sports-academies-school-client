@@ -18,7 +18,7 @@ const PopularCourses = () => {
                         <CourseCard />
                     </div>
                     <div className='flex justify-center mt-2'>
-                        <Link>
+                        <Link to='/classes'>
                             <LinkButton text='All Classes' />
                         </Link>
                     </div>

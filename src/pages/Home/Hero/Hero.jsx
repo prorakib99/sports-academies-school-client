@@ -57,7 +57,7 @@ const Hero = () => {
                             and friendships in a fun and active summer setting.
                         </p>
                         <div className='mt-6'>
-                            <Link>
+                            <Link to='/classes'>
                                 <LinkButton text='All Classes' />
                             </Link>
                         </div>

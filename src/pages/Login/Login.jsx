@@ -1,0 +1,110 @@
+import { IoEyeSharp } from 'react-icons/io5';
+import { IoMdEyeOff } from 'react-icons/io';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+const Login = () => {
+    const [show, setShow] = useState(false);
+    return (
+        <main className='lg:min-h-[70vh] dark:bg-slate-800 flex justify-center items-center'>
+            <div className='py-14 lg:py-20'>
+                <div className='container'>
+                    <div className='flex justify-center items-center px-8 py-6 lg:w-[500px] mx-auto dark:bg-black/10 shadow-2xl rounded-md'>
+                        <div className='w-full space-y-8 dark:text-slate-400 text-black relative z-10'>
+                            <div>
+                                <h1 className='text-center text-3xl font-bold mb-2 text-black/80 dark:text-white/80'>
+                                    Please
+                                    <span className='dark:text-sky-600'> Login</span>
+                                </h1>
+                                <p className='mx-auto w-full text-center'>
+                                    Do not share your login information with anyone.
+                                </p>
+                            </div>
+                            <form className='space-y-6'>
+                                <div className=''>
+                                    <label htmlFor='email' id='email-label' className=''>
+                                        Your Email Address
+                                        <span className='' aria-hidden='true'>
+                                            {' '}
+                                            *
+                                        </span>
+                                    </label>
+                                    <div className='mt-1'>
+                                        <input
+                                            aria-label='Your email address'
+                                            placeholder='boss@gmail.com'
+                                            id='email'
+                                            type='text'
+                                            className='dark:bg-slate-700 border-2 w-full dark:border-transparent focus:border-sky-600 dark:focus:border-sky-600 outline-none px-4 py-2 rounded dark:text-white/90 text-black/90 placeholder:text-black/40 dark:placeholder:text-white/30'
+                                        />
+                                    </div>
+                                </div>
+                                <div className=''>
+                                    <label htmlFor='password' id='password-label' className=''>
+                                        Enter Password
+                                        <span className='' aria-hidden='true'>
+                                            {' '}
+                                            *
+                                        </span>
+                                    </label>
+                                    {/* <div className=''>
+                                        Password must be at least 8 characters long and include at
+                                        least 1 letter and 1 number.
+                                    </div> */}
+                                    <div className='mt-1 relative'>
+                                        <div aria-invalid='false' className=''>
+                                            <input
+                                                type={show ? 'text' : 'password'}
+                                                required=''
+                                                className='dark:bg-slate-700 border-2 w-full dark:border-transparent focus:border-sky-600 dark:focus:border-sky-600 outline-none px-4 py-2 rounded dark:text-white/90 text-black/90 placeholder:text-black/40 dark:placeholder:text-white/30'
+                                                id='password'
+                                                placeholder='anyPassword1971'
+                                                aria-label='Your password'
+                                            />
+                                        </div>
+                                        <div className='absolute right-0 top-0 mt-3 mr-3'>
+                                            <button
+                                                onClick={() => setShow(!show)}
+                                                className=''
+                                                type='button'
+                                            >
+                                                {show ? (
+                                                    <IoMdEyeOff className='text-xl' />
+                                                ) : (
+                                                    <IoEyeSharp className='text-xl' />
+                                                )}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='flex justify-between items-center'>
+                                    <Link
+                                        className='text-sm hover:text-sky-500 duration-300'
+                                        to='/forget-password'
+                                    >
+                                        Forgot Password?
+                                    </Link>
+                                    <button
+                                        className='bg-slate-800 dark:bg-sky-600 rounded-full font-bold px-4 py-1 dark:hover:bg-secondary1 text-white'
+                                        type='submit'
+                                    >
+                                        Login
+                                    </button>
+                                </div>
+                                <div className='text-center'>
+                                    <p>
+                                        New here? Please{' '}
+                                        <Link to='/register' className='font-bold hover:underline'>
+                                            Create an account
+                                        </Link>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    );
+};
+
+export default Login;
