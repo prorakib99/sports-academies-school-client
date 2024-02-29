@@ -97,7 +97,7 @@ const Header = () => {
                             </button>
                             <div className='flex space-x-3'>
                                 <Link to='/login'>
-                                    <button className='bg-slate-900 dark:bg-sky-600 text-sm rounded-full px-4 font-bold py-1.5 text-white'>
+                                    <button className='bg-slate-900 dark:bg-sky-600 text-sm rounded-full px-4 font-bold py-1.5 text-white dark:text-white/90 hover:text-white'>
                                         Login
                                     </button>
                                 </Link>

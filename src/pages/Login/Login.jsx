@@ -6,13 +6,17 @@ import { useForm } from 'react-hook-form';
 
 const Login = () => {
     const [show, setShow] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm();
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        setIsLoading(true);
+        console.log(data);
+    };
     return (
         <main className='lg:min-h-[70vh] dark:bg-slate-800 flex justify-center items-center'>
             <div className='py-14 lg:py-20'>
@@ -105,10 +109,13 @@ const Login = () => {
                                         Forgot Password?
                                     </Link>
                                     <button
-                                        className='bg-slate-800 dark:bg-sky-600 rounded-full font-bold px-4 py-1 dark:hover:bg-secondary1 text-white'
+                                        className='btn btn-sm text-base bg-slate-800 dark:bg-sky-600 rounded-full font-bold px-5 border-none flex items-center gap-2 hover:bg-slate-900 text-white'
                                         type='submit'
                                     >
-                                        Login
+                                        {isLoading && (
+                                            <span className='loading loading-spinner text-white'></span>
+                                        )}
+                                        <span>Login</span>
                                     </button>
                                 </div>
                                 <div className='text-center'>

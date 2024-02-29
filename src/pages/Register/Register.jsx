@@ -4,9 +4,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
+const imageUploadKey = import.meta.env.VITE_UPLOAD_PHOTO_KEY;
+
 const Register = () => {
     const [show, setShow] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const {
         register,
         handleSubmit,
@@ -17,10 +20,29 @@ const Register = () => {
     const password = watch('password', '');
 
     const onSubmit = (data) => {
+        setIsLoading(true);
         const photoData = new FormData();
-        photoData.append('photo', data.photo[0]);
+        photoData.append('image', data.photo[0]);
 
-        console.log(data, photoData);
+        fetch(`https://api.imgbb.com/1/upload?key=${imageUploadKey}`, {
+            method: 'POST',
+            body: photoData
+        })
+            .then((res) => res.json())
+            .then((imgRes) => {
+                if (imgRes.success) {
+                    const { name, email, password } = data;
+                    const newUser = {
+                        name,
+                        email,
+                        password,
+                        photoURL: imgRes.data.display_url,
+                        role: 'student'
+                    };
+                    console.log(newUser);
+                    setIsLoading(false);
+                }
+            });
     };
 
     return (
@@ -228,10 +250,13 @@ const Register = () => {
                                 {/* Submit button */}
                                 <div className='flex justify-center items-center'>
                                     <button
-                                        className='bg-slate-800 dark:bg-sky-600 rounded-full font-bold px-4 py-1 dark:hover:bg-secondary1 text-white'
+                                        className='btn btn-sm bg-slate-800 dark:bg-sky-600 rounded-full font-bold px-5 text-base hover:bg-slate-900 border-none flex items-center gap-2 text-white'
                                         type='submit'
                                     >
-                                        Register
+                                        {isLoading && (
+                                            <span className='loading loading-spinner text-white'></span>
+                                        )}
+                                        <span>Register</span>
                                     </button>
                                 </div>
                                 <div className='text-center'>
