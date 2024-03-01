@@ -3,13 +3,16 @@ import { IoMdEyeOff } from 'react-icons/io';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../../hooks/useAuth';
 
 const imageUploadKey = import.meta.env.VITE_UPLOAD_PHOTO_KEY;
 
 const Register = () => {
     const [show, setShow] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+
+    const { user, handleRegister, isLoading, setIsLoading } = useAuth();
+
     const {
         register,
         handleSubmit,
@@ -40,7 +43,15 @@ const Register = () => {
                         role: 'student'
                     };
                     console.log(newUser);
-                    setIsLoading(false);
+                    handleRegister(email, password)
+                        .then((result) => {
+                            const registeredUser = result.user;
+                            console.log(registeredUser);
+                        })
+                        .catch((err) => {
+                            const message = err.message;
+                            console.log(err, `Message: ${message}`);
+                        });
                 }
             });
     };

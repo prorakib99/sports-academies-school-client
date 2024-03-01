@@ -10,10 +10,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/ThemeProvider';
 import { useContext } from 'react';
 import { nav } from '../../../localData/nav';
+import useAuth from '../../../../hooks/useAuth';
 
 const Header = () => {
     const { theme, themeToggle } = useContext(ThemeContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user } = useAuth();
+    console.log(user);
 
     const toggleMenu = () => {
         setIsMenuOpen((prev) => !prev);
@@ -96,11 +99,32 @@ const Header = () => {
                                 {theme === 'dark' ? <FiSun className='text-white' /> : <FaMoon />}
                             </button>
                             <div className='flex space-x-3'>
-                                <Link to='/login'>
-                                    <button className='bg-slate-900 dark:bg-sky-600 text-sm rounded-full px-4 font-bold py-1.5 text-white dark:text-white/90 hover:text-white'>
-                                        Login
-                                    </button>
-                                </Link>
+                                {user ? (
+                                    <>
+                                        <div className='hover:text-2xl hover:cursor-pointer'>
+                                            {user?.photoURL ? (
+                                                <>
+                                                    <img
+                                                        src={user?.photoURL}
+                                                        alt={user?.displayName}
+                                                    />
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div className='w-9 h-9 bg-orange-400 text-black font-bold flex justify-center items-center uppercase text-lg rounded-full'>
+                                                        {user.displayName || 'd'}
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+                                    </>
+                                ) : (
+                                    <Link to='/login'>
+                                        <button className='bg-slate-900 dark:bg-sky-600 text-sm rounded-full px-4 font-bold py-1.5 text-white dark:text-white/90 hover:text-white'>
+                                            Login
+                                        </button>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -112,14 +136,34 @@ const Header = () => {
                         <div className='flex flex-col gap-5 justify-center items-center'>
                             {navigation}
                         </div>
-                        <div className='flex space-x-3 py-4 mb-2 border-t'>
-                            <button
-                                className='bg-slate-900 w-full font-bold text-center dark:bg-sky-600 text-sm rounded-full p-2 text-white'
-                                type='button'
-                            >
-                                Login
-                            </button>
-                        </div>
+                        {user ? (
+                            <>
+                                <div>
+                                    {user?.photoURL ? (
+                                        <>
+                                            <img src={user?.photoURL} alt={user?.displayName} />
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className='w-9 h-9 bg-orange-400 text-black font-bold flex justify-center items-center uppercase text-lg rounded-full'>
+                                                {user.displayName || 'd'}
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </>
+                        ) : (
+                            <div className='flex space-x-3 py-4 mb-2 border-t'>
+                                <Link to='/login'>
+                                    <button
+                                        className='bg-slate-900 w-full font-bold text-center dark:bg-sky-600 text-sm rounded-full p-2 text-white'
+                                        type='button'
+                                    >
+                                        Login
+                                    </button>
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
