@@ -1,7 +1,7 @@
 import { IoEyeSharp } from 'react-icons/io5';
 import { IoMdEyeOff } from 'react-icons/io';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 
@@ -10,8 +10,8 @@ const imageUploadKey = import.meta.env.VITE_UPLOAD_PHOTO_KEY;
 const Register = () => {
     const [show, setShow] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
-
-    const { user, handleRegister, isLoading, setIsLoading } = useAuth();
+    const { logOut, handleRegister, profileUpdate, isLoading, setIsLoading } = useAuth();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -46,6 +46,14 @@ const Register = () => {
                     handleRegister(email, password)
                         .then((result) => {
                             const registeredUser = result.user;
+                            profileUpdate(registeredUser, name, newUser?.photoURL)
+                                .then((res) => {
+                                    console.log(res);
+                                    logOut()
+                                        .then(() => navigate('/login'))
+                                        .catch((err) => console.log(err));
+                                })
+                                .catch((err) => console.log(err));
                             console.log(registeredUser);
                         })
                         .catch((err) => {

@@ -15,8 +15,7 @@ import useAuth from '../../../../hooks/useAuth';
 const Header = () => {
     const { theme, themeToggle } = useContext(ThemeContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user } = useAuth();
-    console.log(user);
+    const { user, logOut } = useAuth();
 
     const toggleMenu = () => {
         setIsMenuOpen((prev) => !prev);
@@ -25,6 +24,13 @@ const Header = () => {
     useEffect(() => {
         setIsMenuOpen(false);
     }, [theme]);
+
+    // Sign Out handler
+    const handleSignOut = () => {
+        logOut()
+            .then()
+            .catch((err) => console.log(err));
+    };
 
     const iconProps = useSpring({
         transform: `rotate(${isMenuOpen ? 180 : 0}deg)`,
@@ -101,21 +107,38 @@ const Header = () => {
                             <div className='flex space-x-3'>
                                 {user ? (
                                     <>
-                                        <div className='hover:text-2xl hover:cursor-pointer'>
-                                            {user?.photoURL ? (
-                                                <>
+                                        <div className='dropdown dropdown-end'>
+                                            <div
+                                                tabIndex={0}
+                                                role='button'
+                                                className='btn btn-ghost btn-circle avatar'
+                                            >
+                                                <div className='w-9 rounded-full border-2 border-black dark:border-sky-600'>
                                                     <img
-                                                        src={user?.photoURL}
+                                                        className='object-top'
                                                         alt={user?.displayName}
+                                                        src={user?.photoURL}
                                                     />
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <div className='w-9 h-9 bg-orange-400 text-black font-bold flex justify-center items-center uppercase text-lg rounded-full'>
-                                                        {user.displayName || 'd'}
-                                                    </div>
-                                                </>
-                                            )}
+                                                </div>
+                                            </div>
+                                            <ul
+                                                tabIndex={0}
+                                                className='mt-3 z-[1] p-2 flex flex-col gap-2 items-center shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-40 dark:bg-[#0B1120]/90 font-bold dark:text-white/60'
+                                            >
+                                                <li>
+                                                    <button className='dark:hover:text-white'>
+                                                        Profile
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button
+                                                        onClick={handleSignOut}
+                                                        className='dark:hover:text-white'
+                                                    >
+                                                        Logout
+                                                    </button>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </>
                                 ) : (
@@ -136,24 +159,28 @@ const Header = () => {
                         <div className='flex flex-col gap-5 justify-center items-center'>
                             {navigation}
                         </div>
-                        {user ? (
-                            <>
-                                <div>
-                                    {user?.photoURL ? (
-                                        <>
-                                            <img src={user?.photoURL} alt={user?.displayName} />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <div className='w-9 h-9 bg-orange-400 text-black font-bold flex justify-center items-center uppercase text-lg rounded-full'>
-                                                {user.displayName || 'd'}
-                                            </div>
-                                        </>
-                                    )}
-                                </div>
-                            </>
-                        ) : (
-                            <div className='flex space-x-3 py-4 mb-2 border-t'>
+                        <div className='flex space-x-3 py-4 mb-2 border-t'>
+                            {user ? (
+                                <>
+                                    <div>
+                                        {user?.photoURL ? (
+                                            <>
+                                                <img
+                                                    className='w-9 h-9 border-2 border-black dark:border-sky-600 rounded-full'
+                                                    src={user?.photoURL}
+                                                    alt={user?.displayName}
+                                                />
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div className='w-9 h-9 bg-orange-400 text-black font-bold flex justify-center items-center uppercase text-lg rounded-full'>
+                                                    {user?.displayName.slice(0, 1) || 'd'}
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+                                </>
+                            ) : (
                                 <Link to='/login'>
                                     <button
                                         className='bg-slate-900 w-full font-bold text-center dark:bg-sky-600 text-sm rounded-full p-2 text-white'
@@ -162,8 +189,8 @@ const Header = () => {
                                         Login
                                     </button>
                                 </Link>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 )}
             </div>
