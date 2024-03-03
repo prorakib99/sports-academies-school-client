@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const imageUploadKey = import.meta.env.VITE_UPLOAD_PHOTO_KEY;
 
@@ -292,6 +293,9 @@ const Register = () => {
                             </form>
                         </div>
                     </div>
+
+                    {/* Social Login */}
+                    <SocialLogin />
                 </div>
             </div>
         </main>

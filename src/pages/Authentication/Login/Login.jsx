@@ -1,14 +1,16 @@
 import { IoEyeSharp } from 'react-icons/io5';
 import { IoMdEyeOff } from 'react-icons/io';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import ForgetPassword from '../../../components/ForgetPassword';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     const [show, setShow] = useState(false);
     const { handleLogin, isLoading, setIsLoading } = useAuth();
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -21,6 +23,7 @@ const Login = () => {
             .then((result) => {
                 console.log(result.user);
                 setIsLoading(false);
+                navigate('/');
             })
             .catch((err) => {
                 setIsLoading(false);
@@ -145,6 +148,9 @@ const Login = () => {
                             </form>
                         </div>
                     </div>
+
+                    {/* Social Login */}
+                    <SocialLogin />
                 </div>
             </div>
             <ForgetPassword />

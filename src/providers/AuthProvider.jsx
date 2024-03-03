@@ -6,7 +6,8 @@ import {
     updateProfile,
     signOut,
     signInWithEmailAndPassword,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    signInWithPopup
 } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
@@ -38,6 +39,10 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     };
 
+    const loginWithPopup = (provider) => {
+        return signInWithPopup(auth, provider);
+    };
+
     const profileUpdate = (newUser, name, photo) => {
         return updateProfile(newUser, {
             displayName: name,
@@ -59,6 +64,7 @@ const AuthProvider = ({ children }) => {
         setIsLoading,
         handleRegister,
         handleLogin,
+        loginWithPopup,
         logOut,
         forgetPassword,
         profileUpdate
