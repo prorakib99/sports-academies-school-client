@@ -3,7 +3,7 @@ import { IoMdEyeOff } from 'react-icons/io';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 
 const imageUploadKey = import.meta.env.VITE_UPLOAD_PHOTO_KEY;
 
@@ -172,9 +172,9 @@ const Register = () => {
                                             )}
                                         </div>
                                         <div className='absolute right-0 top-0 mt-3 mr-3'>
-                                            <button
+                                            <div
                                                 onClick={() => setShow(!show)}
-                                                className=''
+                                                className='cursor-pointer'
                                                 type='button'
                                             >
                                                 {show ? (
@@ -182,7 +182,7 @@ const Register = () => {
                                                 ) : (
                                                     <IoEyeSharp className='text-xl' />
                                                 )}
-                                            </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -226,9 +226,9 @@ const Register = () => {
                                             )}
                                         </div>
                                         <div className='absolute right-0 top-0 mt-3 mr-3'>
-                                            <button
+                                            <div
                                                 onClick={() => setShowConfirm(!showConfirm)}
-                                                className=''
+                                                className='cursor-pointer'
                                                 type='button'
                                             >
                                                 {showConfirm ? (
@@ -236,7 +236,7 @@ const Register = () => {
                                                 ) : (
                                                     <IoEyeSharp className='text-xl' />
                                                 )}
-                                            </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -281,7 +281,10 @@ const Register = () => {
                                 <div className='text-center'>
                                     <p>
                                         Already Have an Account? Please{' '}
-                                        <Link to='/login' className='font-bold hover:underline'>
+                                        <Link
+                                            to='/login'
+                                            className='font-bold text-sky-600 hover:underline'
+                                        >
                                             Login Here
                                         </Link>
                                     </p>

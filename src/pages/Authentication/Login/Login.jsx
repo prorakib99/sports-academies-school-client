@@ -3,7 +3,8 @@ import { IoMdEyeOff } from 'react-icons/io';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
+import ForgetPassword from '../../../components/ForgetPassword';
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -111,12 +112,15 @@ const Login = () => {
                                     </div>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <Link
+                                    <button
+                                        onClick={() =>
+                                            document.getElementById('my_modal_5').showModal()
+                                        }
                                         className='text-sm hover:text-sky-500 duration-300'
-                                        to='/forget-password'
+                                        type='button'
                                     >
                                         Forgot Password?
-                                    </Link>
+                                    </button>
                                     <button
                                         className='btn btn-sm text-base bg-slate-800 dark:bg-sky-600 rounded-full font-bold px-5 border-none flex items-center gap-2 hover:bg-slate-900 text-white'
                                         type='submit'
@@ -130,7 +134,10 @@ const Login = () => {
                                 <div className='text-center'>
                                     <p>
                                         New here? Please{' '}
-                                        <Link to='/register' className='font-bold hover:underline'>
+                                        <Link
+                                            to='/register'
+                                            className='font-bold text-sky-600 hover:underline'
+                                        >
                                             Create an account
                                         </Link>
                                     </p>
@@ -140,6 +147,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <ForgetPassword />
         </main>
     );
 };

@@ -4,8 +4,8 @@ import Home from '../pages/Home/Home/Home';
 import Instructors from '../pages/Instructors/Instructors/Instructors';
 import Classes from '../pages/Classes/Classes/Classes';
 import Student from '../pages/Dashboard/Student/Student';
-import Login from '../pages/Login/Login';
-import Register from '../pages/Register/Register';
+import Login from '../pages/Authentication/Login/Login';
+import Register from '../pages/Authentication/Register/Register';
 
 export const router = createBrowserRouter([
     {
