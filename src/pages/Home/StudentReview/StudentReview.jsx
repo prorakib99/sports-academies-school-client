@@ -44,7 +44,7 @@ const StudentReview = () => {
                         </div>
                     </div>
                     <div
-                        className={`absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-white  pt-80 pb-20 dark:from-slate-900 ${
+                        className={`absolute inset-x-0 bottom-12 flex justify-center bg-gradient-to-t from-white  pt-80 pb-10 dark:from-slate-900 ${
                             isShowAll ? 'hidden' : ''
                         }`}
                     >
