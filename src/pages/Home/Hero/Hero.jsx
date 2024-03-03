@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import LinkButton from '../../Shared/LinkButton/LinkButton';
 const Hero = () => {
     return (
-        <div className='dark:bg-[#0B1120]/60 border-b-2 border-gray-300 dark:border-white/10 bg-gray-200'>
+        <div className='dark:bg-slate-900 border-b-2 border-gray-300 dark:border-white/10 bg-gray-200'>
             <div className='container'>
                 <div className='py-20 lg:py-40 grid lg:grid-cols-2 items-center'>
                     <Swiper

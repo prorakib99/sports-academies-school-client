@@ -8,7 +8,7 @@ const InstructorCard = () => {
 
     return (
         <div
-            className='text-center relative overflow-hidden border border-gray-300 dark:border-none hover:scale-105 duration-500 rounded shadow-2xl dark:shadow-black/70'
+            className='text-center relative overflow-hidden border dark:bg-slate-950/[0.8] border-gray-300 dark:border-none hover:scale-105 duration-500 rounded shadow-2xl'
             onMouseEnter={() => setSocialPosition(true)}
             onMouseLeave={() => setSocialPosition(false)}
         >

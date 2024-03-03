@@ -3,7 +3,7 @@ import { IoMdEyeOff } from 'react-icons/io';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import useAuth from '../../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
     const [show, setShow] = useState(false);

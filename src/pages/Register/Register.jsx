@@ -3,7 +3,7 @@ import { IoMdEyeOff } from 'react-icons/io';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import useAuth from '../../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 const imageUploadKey = import.meta.env.VITE_UPLOAD_PHOTO_KEY;
 

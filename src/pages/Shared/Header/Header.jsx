@@ -10,7 +10,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/ThemeProvider';
 import { useContext } from 'react';
 import { nav } from '../../../localData/nav';
-import useAuth from '../../../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 
 const Header = () => {
     const { theme, themeToggle } = useContext(ThemeContext);
@@ -66,7 +66,7 @@ const Header = () => {
     );
 
     return (
-        <nav className='border-general sticky top-0 z-40 border-b dark:border-[#0B1120] bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/90'>
+        <nav className='border-general sticky top-0 z-40 dark:border-slate-800 bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-slate-950/[.92] border-b'>
             <div className='container'>
                 <div className='relative flex h-16 items-center justify-between'>
                     <div className='flex items-center'>
