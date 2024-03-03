@@ -54,12 +54,14 @@ const Header = () => {
                     {n.page}
                 </NavLink>
             ))}
-            <NavLink
-                to='/dashboard'
-                className='cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
-            >
-                Dashboard
-            </NavLink>
+            {user && (
+                <NavLink
+                    to='/dashboard'
+                    className='cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
+                >
+                    Dashboard
+                </NavLink>
+            )}
         </>
     );
 
@@ -96,6 +98,7 @@ const Header = () => {
                     </div>
 
                     <div className='hidden lg:flex lg:items-center lg:space-x-4'>
+                        {/* Navigation menu */}
                         <div className='flex space-x-2'>{navigation}</div>
                         <div className='flex items-center space-x-4'>
                             <button
@@ -125,15 +128,15 @@ const Header = () => {
                                                 tabIndex={0}
                                                 className='mt-3 z-[1] p-2 flex flex-col gap-2 items-center shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-40 dark:bg-[#0B1120]/90 font-bold dark:text-white/60'
                                             >
-                                                <li>
-                                                    <button className='dark:hover:text-white'>
+                                                <li className='w-full'>
+                                                    <button className='dark:hover:text-white w-full dark:focus:text-white'>
                                                         Profile
                                                     </button>
                                                 </li>
-                                                <li>
+                                                <li className='w-full'>
                                                     <button
                                                         onClick={handleSignOut}
-                                                        className='dark:hover:text-white'
+                                                        className='dark:hover:text-white w-full dark:focus:text-white'
                                                     >
                                                         Logout
                                                     </button>

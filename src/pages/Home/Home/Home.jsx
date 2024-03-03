@@ -1,6 +1,7 @@
 import Hero from '../Hero/Hero';
 import PopularCourses from '../PopularCourses/PopularCourses';
 import PopularInstructors from '../PopularInstructors/PopularInstructors';
+import StudentReview from '../StudentReview/StudentReview';
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <Hero />
             <PopularCourses />
             <PopularInstructors />
+            <StudentReview />
         </div>
     );
 };

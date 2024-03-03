@@ -3,10 +3,11 @@ import { IoMdEyeOff } from 'react-icons/io';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
     const [show, setShow] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const { handleLogin, isLoading, setIsLoading } = useAuth();
     const {
         register,
         handleSubmit,
@@ -15,13 +16,25 @@ const Login = () => {
 
     const onSubmit = (data) => {
         setIsLoading(true);
-        console.log(data);
+        handleLogin(data.email, data.password)
+            .then((result) => {
+                console.log(result.user);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                setIsLoading(false);
+                console.log(err.message);
+            });
     };
     return (
         <main className='lg:min-h-[70vh] dark:bg-slate-800 flex justify-center items-center'>
             <div className='py-14 lg:py-20'>
                 <div className='container'>
-                    <div className='flex justify-center items-center px-8 py-6 lg:w-[500px] mx-auto dark:bg-black/10 shadow-2xl dark:shadow-white/10 rounded-md'>
+                    <div
+                        className={`flex justify-center items-center px-8 py-6 lg:w-[500px] mx-auto dark:bg-black/10 shadow-2xl dark:shadow-white/10 rounded-md ${
+                            isLoading ? 'blur-sm' : ''
+                        }`}
+                    >
                         <div className='w-full space-y-8 dark:text-slate-400 text-black relative z-10'>
                             <div>
                                 <h1 className='text-center text-3xl font-bold mb-2 text-black/80 dark:text-white/80'>
@@ -65,10 +78,6 @@ const Login = () => {
                                             *
                                         </span>
                                     </label>
-                                    {/* <div className=''>
-                                        Password must be at least 8 characters long and include at
-                                        least 1 letter and 1 number.
-                                    </div> */}
                                     <div className='mt-1 relative'>
                                         <div>
                                             <input
