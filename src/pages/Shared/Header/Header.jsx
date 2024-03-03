@@ -6,7 +6,7 @@ import { FiSun } from 'react-icons/fi';
 import { FaMoon } from 'react-icons/fa';
 import lightLogo from '../../../assets/light-logo.png';
 import darkLogo from '../../../assets/dark-logo.png';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../../providers/ThemeProvider';
 import { useContext } from 'react';
 import { nav } from '../../../localData/nav';
@@ -16,6 +16,7 @@ const Header = () => {
     const { theme, themeToggle } = useContext(ThemeContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { user, logOut } = useAuth();
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsMenuOpen((prev) => !prev);
@@ -28,7 +29,7 @@ const Header = () => {
     // Sign Out handler
     const handleSignOut = () => {
         logOut()
-            .then()
+            .then(() => navigate('/'))
             .catch((err) => console.log(err));
     };
 
@@ -158,29 +159,48 @@ const Header = () => {
 
                 {/* Responsive Menu */}
                 {isMenuOpen && (
-                    <div className='lg:hidden'>
-                        <div className='flex flex-col gap-5 justify-center items-center'>
-                            {navigation}
-                        </div>
-                        <div className='flex space-x-3 py-4 mb-2 border-t'>
+                    <div className='lg:hidden pt-4'>
+                        <div className='flex flex-col gap-5 justify-center'>{navigation}</div>
+                        <div className='space-x-3 py-4 my-3 border-t border-gray-300 dark:border-slate-700'>
                             {user ? (
                                 <>
-                                    <div>
-                                        {user?.photoURL ? (
-                                            <>
-                                                <img
-                                                    className='w-9 h-9 border-2 border-black dark:border-sky-600 rounded-full'
-                                                    src={user?.photoURL}
-                                                    alt={user?.displayName}
-                                                />
-                                            </>
-                                        ) : (
-                                            <>
-                                                <div className='w-9 h-9 bg-orange-400 text-black font-bold flex justify-center items-center uppercase text-lg rounded-full'>
-                                                    {user?.displayName.slice(0, 1) || 'd'}
-                                                </div>
-                                            </>
-                                        )}
+                                    <div className='ps-2 space-y-3'>
+                                        <div className='flex items-center gap-4'>
+                                            {user?.photoURL ? (
+                                                <>
+                                                    <img
+                                                        className='w-9 h-9 border-2 border-black dark:border-sky-600 rounded-full'
+                                                        src={user?.photoURL}
+                                                        alt={user?.displayName}
+                                                    />
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div className='w-9 h-9 bg-orange-400 text-black font-bold flex justify-center items-center uppercase text-lg rounded-full'>
+                                                        {user?.displayName.slice(0, 1) || 'd'}
+                                                    </div>
+                                                </>
+                                            )}
+                                            <div>
+                                                <h5 className='text-slate-700 text-base dark:text-slate-400'>
+                                                    {user.displayName}
+                                                </h5>
+                                                <h5 className='text-slate-700 text-sm dark:text-slate-500'>
+                                                    {user.email}
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div className='flex flex-col'>
+                                            <Link className='cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'>
+                                                Profile
+                                            </Link>
+                                            <Link
+                                                onClick={handleSignOut}
+                                                className='cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
+                                            >
+                                                Logout
+                                            </Link>
+                                        </div>
                                     </div>
                                 </>
                             ) : (
