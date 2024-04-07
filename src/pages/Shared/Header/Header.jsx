@@ -58,7 +58,13 @@ const Header = () => {
             {user && (
                 <NavLink
                     to='/dashboard'
-                    className='cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
+                    className={({ isActive, isPending }) =>
+                        isPending
+                            ? 'pending'
+                            : isActive
+                            ? 'active text-white bg-gray-800 cursor-pointer rounded-md px-3 py-2 text-sm font-medium dark:bg-slate-800 dark:text-slate-200'
+                            : 'cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
+                    }
                 >
                     Dashboard
                 </NavLink>

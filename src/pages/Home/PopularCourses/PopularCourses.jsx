@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
-import CourseCard from './CourseCard/CourseCard';
 import LinkButton from '../../Shared/LinkButton/LinkButton';
+import CourseCard from '../../Shared/CourseCard/CourseCard';
 
 const PopularCourses = () => {
     return (

@@ -1,7 +1,7 @@
 import { FiStar } from 'react-icons/fi';
 import { FaUserGraduate } from 'react-icons/fa6';
-import cardImg from '../../../../assets/card-demo.jpg';
-import instructorImg from '../../../../assets/instractor-demo.png';
+import cardImg from '../../../assets/card-demo.jpg';
+import instructorImg from '../../../assets/instractor-demo.png';
 import { FaCartPlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
