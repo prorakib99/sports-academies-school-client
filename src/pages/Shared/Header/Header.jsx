@@ -11,11 +11,12 @@ import { ThemeContext } from '../../../providers/ThemeProvider';
 import { useContext } from 'react';
 import { nav } from '../../../localData/nav';
 import useAuth from '../../../hooks/useAuth';
+import MenuLoading from './components/MenuLoading/MenuLoading';
 
 const Header = () => {
     const { theme, themeToggle } = useContext(ThemeContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user, logOut } = useAuth();
+    const { user, logOut, isLoading } = useAuth();
     const navigate = useNavigate();
 
     const toggleMenu = () => {
@@ -86,81 +87,100 @@ const Header = () => {
                         </Link>
                     </div>
 
-                    <div className='flex space-x-4 lg:hidden'>
-                        <button onClick={themeToggle} className='flex-shrink-0 cursor-pointer p-1'>
-                            {theme === 'dark' ? <FiSun className='text-white' /> : <FaMoon />}
-                        </button>
-                        <button
-                            onClick={toggleMenu}
-                            className='text-gray-400 hover:text-white focus:outline-none'
-                        >
-                            <animated.div style={iconProps}>
-                                {isMenuOpen ? (
-                                    <MdClose className='text-2xl text-black dark:text-white' />
-                                ) : (
-                                    <HiBars3 className='text-2xl text-black dark:text-white' />
-                                )}
-                            </animated.div>
-                        </button>
-                    </div>
+                    {isLoading ? (
+                        <>
+                            <MenuLoading />
+                        </>
+                    ) : (
+                        <div>
+                            <div className='flex space-x-4 lg:hidden'>
+                                <button
+                                    onClick={themeToggle}
+                                    className='flex-shrink-0 cursor-pointer p-1'
+                                >
+                                    {theme === 'dark' ? (
+                                        <FiSun className='text-white' />
+                                    ) : (
+                                        <FaMoon />
+                                    )}
+                                </button>
+                                <button
+                                    onClick={toggleMenu}
+                                    className='text-gray-400 hover:text-white focus:outline-none'
+                                >
+                                    <animated.div style={iconProps}>
+                                        {isMenuOpen ? (
+                                            <MdClose className='text-2xl text-black dark:text-white' />
+                                        ) : (
+                                            <HiBars3 className='text-2xl text-black dark:text-white' />
+                                        )}
+                                    </animated.div>
+                                </button>
+                            </div>
 
-                    <div className='hidden lg:flex lg:items-center lg:space-x-4'>
-                        {/* Navigation menu */}
-                        <div className='flex space-x-2'>{navigation}</div>
-                        <div className='flex items-center space-x-4'>
-                            <button
-                                onClick={themeToggle}
-                                className='flex-shrink-0 cursor-pointer p-1'
-                            >
-                                {theme === 'dark' ? <FiSun className='text-white' /> : <FaMoon />}
-                            </button>
-                            <div className='flex space-x-3'>
-                                {user ? (
-                                    <>
-                                        <div className='dropdown dropdown-end'>
-                                            <div
-                                                tabIndex={0}
-                                                role='button'
-                                                className='btn btn-ghost btn-circle avatar'
-                                            >
-                                                <div className='w-9 rounded-full border-2 border-black dark:border-sky-600'>
-                                                    <img
-                                                        className='object-top'
-                                                        alt={user?.displayName}
-                                                        src={user?.photoURL}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <ul
-                                                tabIndex={0}
-                                                className='mt-3 z-[1] p-2 flex flex-col gap-2 items-center shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-40 dark:bg-[#0B1120]/90 font-bold dark:text-white/60'
-                                            >
-                                                <li className='w-full'>
-                                                    <button className='dark:hover:text-white w-full dark:focus:text-white'>
-                                                        Profile
-                                                    </button>
-                                                </li>
-                                                <li className='w-full'>
-                                                    <button
-                                                        onClick={handleSignOut}
-                                                        className='dark:hover:text-white w-full dark:focus:text-white'
+                            <div className='hidden lg:flex lg:items-center lg:space-x-4'>
+                                {/* Navigation menu */}
+                                <div className='flex space-x-2'>{navigation}</div>
+                                <div className='flex items-center space-x-4'>
+                                    <button
+                                        onClick={themeToggle}
+                                        className='flex-shrink-0 cursor-pointer p-1'
+                                    >
+                                        {theme === 'dark' ? (
+                                            <FiSun className='text-white' />
+                                        ) : (
+                                            <FaMoon />
+                                        )}
+                                    </button>
+                                    <div className='flex space-x-3'>
+                                        {user ? (
+                                            <>
+                                                <div className='dropdown dropdown-end'>
+                                                    <div
+                                                        tabIndex={0}
+                                                        role='button'
+                                                        className='btn btn-ghost btn-circle avatar'
                                                     >
-                                                        Logout
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <Link to='/login'>
-                                        <button className='bg-slate-900 dark:bg-sky-600 text-sm rounded-full px-4 font-bold py-1.5 text-white dark:text-white/90 hover:text-white'>
-                                            Login
-                                        </button>
-                                    </Link>
-                                )}
+                                                        <div className='w-9 rounded-full border-2 border-black dark:border-sky-600'>
+                                                            <img
+                                                                className='object-top'
+                                                                alt={user?.displayName}
+                                                                src={user?.photoURL}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <ul
+                                                        tabIndex={0}
+                                                        className='mt-3 z-[1] p-2 flex flex-col gap-2 items-center shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-40 dark:bg-[#0B1120]/90 font-bold dark:text-white/60'
+                                                    >
+                                                        <li className='w-full'>
+                                                            <button className='dark:hover:text-white w-full dark:focus:text-white'>
+                                                                Profile
+                                                            </button>
+                                                        </li>
+                                                        <li className='w-full'>
+                                                            <button
+                                                                onClick={handleSignOut}
+                                                                className='dark:hover:text-white w-full dark:focus:text-white'
+                                                            >
+                                                                Logout
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <Link to='/login'>
+                                                <button className='bg-slate-900 dark:bg-sky-600 text-sm rounded-full px-4 font-bold py-1.5 text-white dark:text-white/90 hover:text-white'>
+                                                    Login
+                                                </button>
+                                            </Link>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </div>
 
                 {/* Responsive Menu */}

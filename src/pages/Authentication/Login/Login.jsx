@@ -9,6 +9,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
     const [show, setShow] = useState(false);
+    const [error, setError] = useState('');
     const { handleLogin, isLoading, setIsLoading } = useAuth();
     const navigate = useNavigate();
     const {
@@ -17,19 +18,22 @@ const Login = () => {
         formState: { errors }
     } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         setIsLoading(true);
-        handleLogin(data.email, data.password)
-            .then((result) => {
-                console.log(result.user);
-                setIsLoading(false);
+        setError('');
+
+        try {
+            const user = await handleLogin(data.email, data.password);
+            if (user) {
                 navigate('/');
-            })
-            .catch((err) => {
-                setIsLoading(false);
-                console.log(err.code);
-                console.log(err.message);
-            });
+            }
+        } catch (error) {
+            if (error.code === 'auth/invalid-credential') {
+                setError('Your Username or Password is invalid');
+            }
+        } finally {
+            setIsLoading(false);
+        }
     };
     return (
         <main className='lg:min-h-[70vh] dark:bg-slate-800 flex justify-center items-center'>
@@ -49,7 +53,9 @@ const Login = () => {
                                 <p className='mx-auto w-full text-center'>
                                     Do not share your login information with anyone.
                                 </p>
+                                <p className='text-red-400 text-center mt-4'>{error}</p>
                             </div>
+
                             <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
                                 <div className=''>
                                     <label htmlFor='email' id='email-label' className=''>
@@ -129,9 +135,7 @@ const Login = () => {
                                         className='btn btn-sm text-base bg-slate-800 dark:bg-sky-600 rounded-full font-bold px-5 border-none flex items-center gap-2 hover:bg-slate-900 text-white'
                                         type='submit'
                                     >
-                                        {isLoading && (
-                                            <span className='loading loading-spinner text-white'></span>
-                                        )}
+                                        {isLoading && <span className='text-white'></span>}
                                         <span>Login</span>
                                     </button>
                                 </div>
